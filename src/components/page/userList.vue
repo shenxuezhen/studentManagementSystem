@@ -10,10 +10,6 @@
         </el-table-column>
       </el-table>
     </template>
-    <div class="footer">
-      <el-pagination background layout="prev, pager, next" :total="1000">
-      </el-pagination>
-    </div>
   </div>
 </template>
 <script>
@@ -66,6 +62,12 @@ export default {
         address: '上海市普陀区金沙江路 1518 弄'
       }]
     }
+  },
+  created(){
+    var self=this;
+    self.axios.get('user').then(res=>{
+      console.log(res.data);
+    })
   }
 }
 

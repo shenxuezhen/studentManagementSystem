@@ -18,8 +18,8 @@ http.createServer(function(req, res) {
   let { pathname, query } = url.parse(req.url, true); //加true使得query是个对象而不是字符串
   res.setHeader('Content-Type', 'application/json;charset=utf8');
   var fileUrl;
-  if (pathname === '/user') {
-    fileUrl='./mock/userList.json';
+  if (pathname === '/user') { //用户列表
+    fileUrl = './mock/userList.json';
     if (req.method == 'GET') {
       read(fileUrl, function(data) {
         console.log(query.class + '、' + query.courseType);
@@ -38,10 +38,11 @@ http.createServer(function(req, res) {
       })
     }
   } else if (pathname === '/course') {
-    fileUrl='./mock/courseList.json';
+    fileUrl = './mock/courseList.json';
     switch (req.method) {
       case 'GET':
         read(fileUrl, function(data) {
+          console.log(data);
           res.end(JSON.stringify(data))
         });
         break;
@@ -50,19 +51,19 @@ http.createServer(function(req, res) {
         req.on('data', function(chunk) {
           str += chunk;
         })
-        res.end('end',()=>{
-            var courseData=JSON.parse(str);
-            read(fileUrl,function(data){
-                data[courseData.courseType].push({'label':courseData.label})
-                write(fileUrl,data,function(){
-                    res.end(JSON.stringify())
-                })
+        res.end('end', () => {
+          var courseData = JSON.parse(str);
+          read(fileUrl, function(data) {
+            data.push(courseData)
+            write(fileUrl, data, function() {
+              res.end(JSON.stringify())
             })
+          })
         })
     }
     return;
   } else if (pathname === '/class') {
-    fileUrl='./mock/classList.json';
+    fileUrl = './mock/classList.json';
     switch (req.method) {
       case 'GET':
         read(fileUrl, function(data) {
@@ -98,17 +99,61 @@ http.createServer(function(req, res) {
     }
     return;
   } else if (pathname === '/notice') {
-    fileUrl='./mock/noticeList.json';
+    fileUrl = './mock/noticeList.json';
     switch (req.method) {
-      case 'GET':
-        read(fileUrl,data => {
-          res.end(JSON.stringify(data));
+      case 'GET': //获取列表、详情
+        read(fileUrl, data => {
+          var resData;
+          if (query.id) {
+            resData = data.find(val => { return val.id == query.id });
+          } else {
+            //插入的时候都是在末尾插入的，方便编辑id，所以获取的时候用到的了数组的reverse
+            resData = data.filter(val => { return val.isShow == true }).reverse();
+          }
+          res.end(JSON.stringify(resData));
+        })
+        break;
+      case 'POST': //提交和更新
+        var str = '';
+        req.on('data', function(chunk) {
+          str += chunk;
+        });
+        req.on('end', function() {
+          var noticeData = JSON.parse(str);
+          read(fileUrl, data => {
+            if (noticeData.id && noticeData.id > 0) {
+              data.forEach((val,ind,data) => {
+                val.id == noticeData.id ? data[ind] = noticeData : '';
+              })
+            } else {
+              noticeData.id = data.length > 0 ? data[data.length - 1].id + 1 : 1;
+              noticeData.isShow = true;
+              noticeData.userSum = null;
+              noticeData.noLookSum = null;
+              data.push(noticeData);
+            }
+            write(fileUrl, data, function() {
+              res.end(JSON.stringify())
+            })
+          })
+        })
+        break;
+      case 'DELETE': //删除数据
+        var id = query.id;
+        read(fileUrl, data => {
+          data.forEach((item, index) => {
+            item.id == id ? item.isShow = false : '';
+          })
+          write(fileUrl, data, function() {
+            res.end(JSON.stringify(data.filter(val => { return val.isShow == true }).reverse()))
+          })
         })
         break;
     }
     return;
   }
 }).listen('3000');
+
 
 function read(url, callback) {
   fs.readFile(url, 'utf8', function(err, data) {

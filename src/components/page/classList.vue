@@ -31,10 +31,6 @@
         </el-table-column>
       </el-table>
     </template>
-    <div class="footer">
-      <el-pagination background layout="prev, pager, next" :total="25">
-      </el-pagination>
-    </div>
   </div>
 </template>
 <script>

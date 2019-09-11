@@ -51,7 +51,7 @@ export default {
             }
             this.isShowWarning.name=false;
             this.isShowWarning.password=false;
-            this.$router.push('/editUser')
+            this.$router.push('/createUser')
         },
         onChangePaw(){
             console.log('aaaaa');

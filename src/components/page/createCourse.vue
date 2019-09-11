@@ -30,14 +30,10 @@ export default {
     onSubmit() {
       var self = this;
       self.axios.post('/course', self.courseForm).then(res => {
-        self.$notify({
-          title: '成功',
+        self.$message({
           message: '创建课程成功',
-          type: 'success',
-          onClose() {
-            self.$router.push('/courseList');
-          }
-        });
+          type: 'success'
+        })
       }).catch(error => {
         self.$notify({
           title: '失败',
@@ -45,8 +41,8 @@ export default {
         })
       })
     },
-    cancel(){
-        this.$router.push('/courseList');
+    cancel() {
+      this.$router.push('/courseList');
     }
   }
 }

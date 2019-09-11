@@ -1,20 +1,5 @@
-{
-    "admin":[{
-        "id":1,
-        "name":"小李",
-        "sex":1,
-        "age":11,
-        "class":"高一",
-        "course":"语文",
-        "courseType":"chinese",
-        "isCheckNewNotice":false,
-        "userName":"xiaoli",
-        "password":"666666",
-        "telPhone":"15711111111",
-        "email":"",
-        "isMarry":false
-    }],
-    "classTeacher":[{
+[
+    {
         "id":1,
         "name":"小李",
         "sex":1,
@@ -28,9 +13,25 @@
         "telPhone":"15711111111",
         "email":"",
         "isMarry":false,
-        "isOffice":false
+        "role":"admin"
     },{
         "id":2,
+        "name":"小李",
+        "sex":1,
+        "age":11,
+        "class":"高一",
+        "course":"语文",
+        "courseType":"chinese",
+        "isCheckNewNotice":false,
+        "userName":"xiaoli",
+        "password":"666666",
+        "telPhone":"15711111111",
+        "email":"",
+        "isMarry":false,
+        "isOffice":false,
+        "role":"classTeacher"
+    },{
+        "id":3,
         "name":"小王",
         "sex":1,
         "age":11,
@@ -43,9 +44,10 @@
         "telPhone":"15711111111",
         "email":"",
         "isMarry":false,
-        "isOffice":false
+        "isOffice":false,
+        "role":"classTeacher"
     },{
-        "id":3,
+        "id":4,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -58,10 +60,10 @@
         "telPhone":"15711111111",
         "email":"",
         "isMarry":false,
-        "isOffice":false
-    }],
-    "user":[{
-        "id":1,
+        "isOffice":false,
+        "role":"classTeacher"
+    },{
+        "id":5,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -73,9 +75,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":2,
+        "id":6,
         "name":"小王",
         "sex":1,
         "age":11,
@@ -87,9 +90,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":3,
+        "id":7,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -101,9 +105,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":1,
+        "id":7,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -115,9 +120,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":2,
+        "id":9,
         "name":"小王",
         "sex":1,
         "age":11,
@@ -129,9 +135,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":3,
+        "id":10,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -143,9 +150,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":1,
+        "id":11,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -157,9 +165,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":2,
+        "id":12,
         "name":"小王",
         "sex":1,
         "age":11,
@@ -171,9 +180,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":3,
+        "id":13,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -185,9 +195,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":1,
+        "id":14,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -199,9 +210,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":2,
+        "id":15,
         "name":"小王",
         "sex":1,
         "age":11,
@@ -213,9 +225,10 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
+        "isMarry":false,
+        "role":"user"
     },{
-        "id":3,
+        "id":16,
         "name":"小李",
         "sex":1,
         "age":11,
@@ -227,6 +240,7 @@
         "password":"666666",
         "telPhone":"15711111111",
         "email":"",
-        "isMarry":false
-    }]
-}
+        "isMarry":false,
+        "role":"user"
+    }
+]

@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <template>
-      <el-table :data="tableData" height="250" border style="width: 100%">
+      <el-table :data="tableData" height="700" border style="width: 100%">
         <el-table-column prop="date" label="日期" width="180">
         </el-table-column>
         <el-table-column prop="name" label="姓名" width="180">
@@ -10,10 +10,6 @@
         </el-table-column>
       </el-table>
     </template>
-    <div class="footer">
-      <el-pagination background layout="prev, pager, next" :total="1000">
-      </el-pagination>
-    </div>
   </div>
 </template>
 <script>
@@ -74,5 +70,7 @@ export default {
 .el-table--border {
   height: 500px !important;
 }
-
+.box{
+  padding: 40px;
+}
 </style>

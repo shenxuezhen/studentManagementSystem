@@ -19,7 +19,7 @@
           </el-option>
         </el-select>
         <el-select v-model="userData.grade" placeholder="请选择班级">
-          <el-option v-for="item in options.optionsGrade" :key="item.value" :label="item.label" :value="item.value">
+          <el-option v-for="item in options.optionsGrade" :key="item.label" :label="item.label" :value="item.label">
           </el-option>
         </el-select>
       </el-form-item>
@@ -72,6 +72,7 @@ export default {
         name: '',
         sex: '',
         class: '',
+        grade:'',
         courseType: '', //文理科
         course: '',
         role: '', //角色
@@ -82,6 +83,7 @@ export default {
         isMarry: ''
       },
       course: {},
+      class:{},
       options: {
         optionsSex: [{ value: '1', label: '男' },
           { value: '2', label: '女' }
@@ -122,9 +124,11 @@ export default {
   created() {
     let self = this;
     self.axios.get('/course').then((res) => {
-      console.log(res);
       self.course = res.data;
     });
+    self.axios.get('/class').then(res=>{
+      self.class=res.data;
+    })
   },
   mounted() {},
   methods: {
@@ -132,8 +136,22 @@ export default {
     resetForm(data) {}
   },
   watch: {
-    'userData.courseType': function(newVal, oldVal) {
-      this.options.optionsCourse = this.course[newVal == '文科' ? 'chinese' : 'math'];
+    'userData.courseType': function(newVal, oldVal) {//文理监视
+      this.options.optionsCourse = this.course.filter(res=>{
+        return res.courseType==(newVal=='文科'?'chinese':'math');
+      });
+    },
+    'userData.class':function(newVal,oldVal){//班级监视
+      this.userData.grade='';
+      var str='';
+      if(newVal=='高一'){
+        str='first';
+      }else if(newVal=='高二'){
+        str='second';
+      }else{
+        str='third';
+      }
+      this.options.optionsGrade=this.class[str];
     }
   }
 }
