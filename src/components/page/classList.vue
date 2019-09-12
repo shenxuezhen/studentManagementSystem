@@ -22,7 +22,7 @@
         </el-table-column>
         <el-table-column prop="isMath" label="文/理科">
           <template slot-scope="scope">
-            <el-tag disable-transitions>{{scope.row.courseType=='math'?'理科':'文科'}}</el-tag>
+            <span>{{scope.row.courseType=='math'?'理科':'文科'}}</span>
           </template>
         </el-table-column>
         <el-table-column prop="label" label="班级">

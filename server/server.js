@@ -22,7 +22,6 @@ http.createServer(function(req, res) {
     fileUrl = './mock/userList.json';
     if (req.method == 'GET') {
       read(fileUrl, function(data) {
-        console.log(query.class + '、' + query.courseType);
         if (query.class && query.courseType) {
           var obj = { classTeacher: data.classTeacher, user: data.user };
           obj.classTeacher = obj.classTeacher.filter(function(value, index) {
@@ -32,7 +31,7 @@ http.createServer(function(req, res) {
             return value.class == query.class && value.courseType == query.courseType;
           })
           res.end(JSON.stringify(obj));
-        } else {
+        } else {//获取用户列表
           res.end(JSON.stringify(data));
         }
       })
@@ -42,7 +41,6 @@ http.createServer(function(req, res) {
     switch (req.method) {
       case 'GET':
         read(fileUrl, function(data) {
-          console.log(data);
           res.end(JSON.stringify(data))
         });
         break;

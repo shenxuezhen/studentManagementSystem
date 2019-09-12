@@ -77,7 +77,7 @@ export default {
         course: '',
         role: '', //角色
         userName: '',
-        telPhone: '',
+        telPhone: null,
         address: '',
         email: '',
         isMarry: ''
@@ -114,7 +114,7 @@ export default {
         class: [{ required: true, message: '请选择年级' }],
         courseType: [{ required: true, message: '请选择科目' }],
         telPhone: [{ required: true, message: '用户手机号不能为空' },
-          { type: 'number', message: '手机号必须为数字值' }
+          { min: 11,max:11, message: '手机号格式不正确' }
         ],
         userName: [{ required: true, message: '用户昵称不能为空' }],
         email: [{ type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur'] }]
@@ -132,8 +132,12 @@ export default {
   },
   mounted() {},
   methods: {
-    submitForm(data) {},
-    resetForm(data) {}
+    submitForm(data) {
+
+    },
+    resetForm(data) {
+      this.$refs[data].resetFields();
+    }
   },
   watch: {
     'userData.courseType': function(newVal, oldVal) {//文理监视

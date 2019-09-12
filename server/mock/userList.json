@@ -220,7 +220,7 @@
         "class":"高一",
         "course":"化学",
         "courseType":"math",
-        "isCheckNewNotice":false,
+        "isCheckNewNotice":true,
         "userName":"xiaoli",
         "password":"666666",
         "telPhone":"15711111111",
