@@ -84,7 +84,7 @@ export default {
       })
     },
     reset(data) {
-        this.$router.push('/classList');
+      this.$router.push('/classList');
     }
   },
   watch: {

@@ -36,7 +36,34 @@ http.createServer(function(req, res) {
         }
       })
     }
-  } else if (pathname === '/course') {
+  } else if(pathname === '/login'){
+    fileUrl='./mock/userList.json';
+    if(req.method == 'GET'){
+      read(fileUrl,function(data){
+        var obj=data.find((val,ind) => {
+          return val.userName==query.userName && val.password == query.password;
+        })
+        var backObj={};
+        if(!obj){
+          backObj={code:-1,msg:'当前用户不存在'};
+          res.end(JSON.stringify(backObj));
+        }else{
+          backObj=
+          {
+            code:0,
+            msg:'登录成功',
+            data:{
+              userName:obj.userName,
+              name:obj.name,
+              role:obj.role
+            }
+          }
+          res.end(JSON.stringify(backObj));
+        }
+      })
+    }
+    return;
+  }else if (pathname === '/course') {//课程管理
     fileUrl = './mock/courseList.json';
     switch (req.method) {
       case 'GET':
@@ -60,7 +87,7 @@ http.createServer(function(req, res) {
         })
     }
     return;
-  } else if (pathname === '/class') {
+  } else if (pathname === '/class') {//班级管理
     fileUrl = './mock/classList.json';
     switch (req.method) {
       case 'GET':
@@ -96,7 +123,7 @@ http.createServer(function(req, res) {
         break;
     }
     return;
-  } else if (pathname === '/notice') {
+  } else if (pathname === '/notice') {//公告管理
     fileUrl = './mock/noticeList.json';
     switch (req.method) {
       case 'GET': //获取列表、详情

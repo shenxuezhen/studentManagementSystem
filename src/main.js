@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import ElementUI from 'element-ui'
+import ViewUI from 'view-design';
 import router from './router'
 import 'element-ui/lib/theme-chalk/index.css'
 import $ from 'jquery'
@@ -11,6 +12,7 @@ axios.defaults.baseURL='http://localhost:3000';
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(ViewUI)
 Vue.prototype.axios = axios;
 /* eslint-disable no-new */
 new Vue({

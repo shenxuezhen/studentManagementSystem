@@ -56,24 +56,26 @@ export default {
       tableData: []
     }
   },
-  created(){
-    var self=this;
-    self.axios.get('user').then(res=>{
-      self.tableData=res.data;
+  created() {
+    var self = this;
+    self.axios.get('user').then(res => {
+      self.tableData = res.data;
     })
   }
 }
 
 </script>
 <style scoped>
-
 .box {
   margin: 30px;
 }
+
 .el-table--border {
-  height: 600px!important;
+  height: 600px !important;
 }
-.footer{
+
+.footer {
   margin-top: 20px;
 }
+
 </style>

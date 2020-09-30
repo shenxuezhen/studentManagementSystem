@@ -33,12 +33,6 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="角色" prop="role">
-        <el-select v-model="userData.role" placeholder="请选择角色">
-          <el-option v-for="item in options.optionsRole" :key="item.value" :label="item.label" :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
       <el-form-item label="地址" prop="address">
         <el-input v-model="userData.address"></el-input>
       </el-form-item>
@@ -72,7 +66,7 @@ export default {
         name: '',
         sex: '',
         class: '',
-        grade:'',
+        grade: '',
         courseType: '', //文理科
         course: '',
         role: '', //角色
@@ -83,7 +77,7 @@ export default {
         isMarry: ''
       },
       course: {},
-      class:{},
+      class: {},
       options: {
         optionsSex: [{ value: '1', label: '男' },
           { value: '2', label: '女' }
@@ -92,7 +86,7 @@ export default {
           { value: '高二', label: '高二' },
           { value: '高三', label: '高三' }
         ],
-        optionGrade:[],
+        optionGrade: [],
         optionsType: [{ value: 'chinese', label: '文科', isMath: false },
           { value: 'math', label: '理科', isMath: true }
         ],
@@ -114,7 +108,7 @@ export default {
         class: [{ required: true, message: '请选择年级' }],
         courseType: [{ required: true, message: '请选择科目' }],
         telPhone: [{ required: true, message: '用户手机号不能为空' },
-          { min: 11,max:11, message: '手机号格式不正确' }
+          { min: 11, max: 11, message: '手机号格式不正确' }
         ],
         userName: [{ required: true, message: '用户昵称不能为空' }],
         email: [{ type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur'] }]
@@ -126,8 +120,8 @@ export default {
     self.axios.get('/course').then((res) => {
       self.course = res.data;
     });
-    self.axios.get('/class').then(res=>{
-      self.class=res.data;
+    self.axios.get('/class').then(res => {
+      self.class = res.data;
     })
   },
   mounted() {},
@@ -140,22 +134,22 @@ export default {
     }
   },
   watch: {
-    'userData.courseType': function(newVal, oldVal) {//文理监视
-      this.options.optionsCourse = this.course.filter(res=>{
-        return res.courseType==(newVal=='文科'?'chinese':'math');
+    'userData.courseType': function(newVal, oldVal) { //文理监视
+      this.options.optionsCourse = this.course.filter(res => {
+        return res.courseType == (newVal == '文科' ? 'chinese' : 'math');
       });
     },
-    'userData.class':function(newVal,oldVal){//班级监视
-      this.userData.grade='';
-      var str='';
-      if(newVal=='高一'){
-        str='first';
-      }else if(newVal=='高二'){
-        str='second';
-      }else{
-        str='third';
+    'userData.class': function(newVal, oldVal) { //班级监视
+      this.userData.grade = '';
+      var str = '';
+      if (newVal == '高一') {
+        str = 'first';
+      } else if (newVal == '高二') {
+        str = 'second';
+      } else {
+        str = 'third';
       }
-      this.options.optionsGrade=this.class[str];
+      this.options.optionsGrade = this.class[str];
     }
   }
 }

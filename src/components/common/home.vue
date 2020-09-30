@@ -1,12 +1,15 @@
 <template>
   <div class="homeBox">
     <el-row class="header">
-      <div>
-        <el-col :span="10">
-        </el-col>
-        <el-col :span="14">
-        </el-col>
-      </div>
+      <el-col :span="4">
+        <div class="tltle">学生信息管理系统</div>
+      </el-col>
+      <el-col :span="20">
+        <div class="userInfo">
+          <span>{{user.name}}</span>
+          <span class="logout-btn" @click="logout">注销</span>
+        </div>
+      </el-col>
     </el-row>
     <el-row>
       <el-col :span="4" class="col-l">
@@ -20,7 +23,6 @@
             </transition>
           </div>
         </div>
-        
       </el-col>
     </el-row>
   </div>
@@ -28,8 +30,28 @@
 <script>
 import vTree from './tree'
 export default {
+  data() {
+    return {
+      user: {}
+    }
+  },
+  created() {
+    var user=JSON.parse(localStorage.getItem('user'));
+    if(user){
+      this.user=user;
+    }else{
+       this.$message.error('登陆失败，即将跳转到登录页面');
+       this.$router.push('/login')
+    }
+  },
   mounted() {
     $('.col-l').css({ 'height': $(window).innerHeight() })
+  },
+  methods:{
+    logout(){
+      localStorage.clear();
+      this.$router.push('/login')
+    }
   },
   components: { vTree }
 }
@@ -48,6 +70,25 @@ export default {
   border-bottom: 1px solid #DCDFE6;
 }
 
+.header .tltle{
+  font-size: 30px;
+  font-weight: bold;
+  height: 100px;
+  line-height: 100px;
+  text-align: left;
+  padding-left: 30px;
+}
+.userInfo{
+  float: right;
+  margin: 16px 40px;
+}
+.userInfo span{
+  display: block;
+  line-height: 30px;
+}
+.userInfo .logout-btn{
+  cursor: pointer;
+}
 .col-l {
   border-right: 1px solid #DCDFE6;
 }

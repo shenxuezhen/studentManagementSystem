@@ -70,7 +70,9 @@ export default {
 .el-table--border {
   height: 500px !important;
 }
-.box{
+
+.box {
   padding: 40px;
 }
+
 </style>

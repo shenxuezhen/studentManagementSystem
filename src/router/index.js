@@ -12,7 +12,6 @@ import createCourse from '@/components/page/createCourse'
 import courseList from '@/components/page/courseList'
 import createNotice from '@/components/page/createNotice'
 import noticeList from '@/components/page/noticeList'
-import changePwd from '@/components/page/changePwd'
 import $ from 'jquery'
 
 Vue.use(Router)
@@ -67,10 +66,6 @@ export default new Router({
         {
           path: '/noticeList',
           component: noticeList
-        },
-        {
-          path: '/changePwd',
-          component: changePwd
         }
       ]
     }
